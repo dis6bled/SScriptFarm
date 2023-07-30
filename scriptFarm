@@ -1,0 +1,39 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Eden Hub!", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionScript", IntroEnabled = true, IntroText = "EDEN"})
+
+local FarmTab = Window:MakeTab({
+	Name = "Farm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+_G.autoTap = true
+
+function autoTap()
+	while _G.autoTap == true do
+			wait(0.0001)
+			local args={
+				[1]="rep"
+			}
+		
+			game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
+	end
+end
+
+FarmTab:AddToggle({
+    Name = "AutoFarm",
+    Default = false,
+    Callback = function(Value)
+		_G.autoTap = Value
+		autoTap()
+	end
+})
+			
+OrionLib:MakeNotification({
+	Name = "Successful Injection",
+	Content = "O Lucas é Gay",
+	Image = "rbxassetid://4483345998",
+	Time = 8
+})
+
+OrionLib:Init()
